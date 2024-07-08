@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import {COURSES} from '../db-data';
 import { Course } from './model/course';
+import { CourseCardComponent } from './course-card/course-card.component';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,17 @@ import { Course } from './model/course';
 export class AppComponent {
 
 courses = COURSES;
+
+// @ViewChild(CourseCardComponent)
+// card: CourseCardComponent
+
+@ViewChildren(CourseCardComponent)
+card: QueryList<CourseCardComponent>;
+
+ngAfterViewInit(){
+  console.log(this.card.first)
+}
+
 onCourseSelected(course:Course){
   console.log('app component clicked', course)
 }
